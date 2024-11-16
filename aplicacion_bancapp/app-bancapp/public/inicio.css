@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    background-color: #7EC3F4;
+}
+header{
+    height: 10vh;
+    background-color: white;
+    border-width:1px;
+    border-style: solid;
+}
+header h2{
+    padding:10px;
+}
+body{
+    /*background-color: #9fd3fb;*/
+}
+.home{
+    width: 650px;
+    height: 80vh;
+    background: linear-gradient(#7EC3F4 50%,#FFFFFF 100%);
+    margin-top: 50px;
+    margin-left:  300px;
+    padding: 10px;
+    border-radius: 10px;
+}
+.home h2{
+    text-align: center;
+    margin-top: 20px;
+}
+.home h3{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.icono img{
+    width: 40px;
+    margin-left: 60px;
+    
+}
+/*.icono{
+    width: 400px;
+    height: 50vh;
+    margin-top: 100px;
+    padding: 5px;
+}*/
+
+.icono h4{
+    /*position: relative;
+    display: flex;*/
+    margin-left: -5px;
+    width: 180px;
+    text-align: center;
+
+}
+.icono{
+    position: relative;
+    display: flex;
+    float: left; right: -50px;
+    margin-top: 100px;
+    padding: 10px;
+    width: 400px;
+}
+.icono li{
+    list-style: none;
+
+}
+
+.icono-salir img{
+    width: 40px;
+    margin-left: 40px;
+}
+.icono-salir li{
+    list-style: none;
+}
+.icono-salir{
+    position: relative;
+    float: left; right: 210px;
+    margin-top: 250px;
+}
+.icono-salir h4{
+    text-align: center;
+    margin-left: 50px;
+}
+
+.item1 li{
+    position: relative;
+    display: flex;
+}
+
+

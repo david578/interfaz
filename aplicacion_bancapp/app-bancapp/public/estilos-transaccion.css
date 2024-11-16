@@ -1,0 +1,26 @@
+.contenido1{
+    position: absolute;
+    margin: 25px;
+    margin-top: 40px;
+    margin-left: 120px;
+    padding: 15px;
+    height: 30vh;
+    width: 400.5px;
+    background-color: white;
+    border-radius: 10px 10px 0 0 ;
+}
+
+.contenido-botones{
+    position: absolute;
+    background-color: white;
+    height: 10vh;
+    width: 31.7%;
+    margin-top: 210px;
+    margin-left: 120px;
+    display: flex;
+    border-radius: 0 0 10px 10px;
+}
+.contenido-botones button{
+    margin-top: 15px;
+    border-radius: 10px;
+}
