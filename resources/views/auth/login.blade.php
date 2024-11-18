@@ -17,18 +17,18 @@
             <h2>BANCAPP</h2>
         </div>
     </nav>
-    <div class="sm:mx-auto sm:w-full sm:max-w-lg pt-0 pb-20 mt-3 mb-11 rounded bg-gradient-to-b bg-white">
-        <div class="sm:mx-auto sm:w-full sm:max-w-lg text-center bg-blue-600">
+    <div class="sm:mx-auto sm:w-full sm:max-w-lg pt-0 pb-20 mt-3 mb-10 rounded bg-gradient-to-b from-blue-500">
+        <div class="sm:mx-auto sm:w-full sm:max-w-lg text-center">
             <div class="sm:mx-auto sm:w-full mt-4 py-4 sm:max-w-60 rounded bg-white">
                 <p>Bienvenido a Bancapp</p>
             </div>
             <div>
-                <p>Estamos aquí para ayudarte a organizar tus finanzas de manera rápida y sencilla</p>
+                <p class="mt-2">Estamos aquí para ayudarte a organizar tus finanzas de manera rápida y sencilla</p>
             </div>
         </div>
         
-        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-6" action="{{ route('login') }}" method="POST">
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm mt-2">
+            <form class="space-y-5" action="{{ route('login') }}" method="POST">
                 @csrf
                 <div>
                     <label for="email" class="block text-sm/6 font-medium text-gray-900"></label>
@@ -55,10 +55,10 @@
                     </div>
                     <div class="grid grid-cols-2 mt-2">
                         <div class="text-sm">
-                            <input type="checkbox" id="remember" name="remember" class="font-semibold text-indigo-600 hover:text-indigo-500">
-                            <label for="remember">Recuérdame</label>
+                            <input type="checkbox" id="remember" name="remember" class="font-semibold text-indigo-600 hover:text-indigo-500"></input>
+                            <a for="remember">recuerdame</a>
                         </div>
-                        <div class="text-sm justify-self-end">
+                        <div class="text-sm">
                             <a href="{{ route('password.request') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">¿Olvidaste tu contraseña?</a>
                         </div>
                     </div>
@@ -71,10 +71,14 @@
                     </button>
                 </div>
             </form>
-            <p class="mt-10 text-center text-sm/6 text-gray-500">
+            <p class="mt-5 text-center text-sm/6 text-gray-500">
                 ¿No tienes cuenta?
                 <a href="{{ route('register') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">Regístrate</a>
             </p>
+            <div class="mt-5 text-center text-sm/6 text-gray-500">
+                o conectese con
+                <a href="{{ route('register') }}" class="flex justify-center font-semibold text-indigo-600 hover:text-indigo-500 "><img width="48" height="48" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/></a>
+            </div>
         </div>
     </div>
     <footer class="footer bg-blue-400 text-black p-4">
