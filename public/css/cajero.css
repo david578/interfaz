@@ -1,0 +1,232 @@
+* {
+    body
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+/* estado de cuenta */
+.retirar{
+    display: block;      /* Asegura que el botón ocupe toda la línea */
+    margin: 10px 0;      /* Agrega un margen superior e inferior */
+    text-align: left;    /* Alinea el texto dentro del botón a la izquierda */
+}
+
+body {
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%);
+}
+.container {
+    display: flex;
+    height: 100vh;v
+
+
+}
+.imagen {
+    text-align: center;
+}
+
+.imagen img {
+    /* border-radius: 50%; Hace la imagen circular */
+    border: 3px solid white;
+    /* Color del borde */
+    width: 500px;
+    /* Tamaño de la imagen */
+    height: 150px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+}
+
+/* Animación de zoom cuando se pasa el cursor sobre la imagen */
+.imagen img:hover {
+    transform: scale(1.1);
+}
+
+/* Barra lateral */
+/* Barra lateral a la izquierda */
+.sidebar {
+ 
+
+    width: 200px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    /* Fijar la barra lateral a la izquierda */
+    left: 0;
+    /* Asegurarse de que está a la izquierda */
+    top: 0;
+    bottom: 0;
+}
+.barra{
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%);
+   
+    border: 1px solid black; /* Borde negro y delgado */
+    
+    width: 250px; /* Ancho del contenedor */
+    border: 1px solid #ccc; /* Borde delgado y gris */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 15px; /* Espaciado interno */
+    background-color: #fff; /* Fondo blanco */
+    font-family: Arial, sans-serif; /* Fuente moderna */
+}
+
+
+
+.sidebar-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    /* Ancho fijo para todos los ítems */
+    height: 150px;
+    /* Altura fija para todos los ítems */
+    color: rgb(27, 11, 11);
+    margin-bottom: 10px;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%);
+    border-radius: 0px;
+    /* Esquinas cuadradas */
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    /* Para animación suave */
+    cursor: pointer;
+}
+
+/* Cambio de color y animación al pasar el cursor */
+.sidebar-item:hover {
+    background-color: #355bb3;
+    /* Nuevo color de fondo al pasar el cursor */
+    transform: scale(1.05);
+    /* Aumenta ligeramente el tamaño */
+}
+
+
+.sidebar-item img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+/* Área principal */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome {
+    margin-bottom: 30px;
+}
+
+.welcome h1 {
+    font-size: 24px;
+    color: #663399;
+    /* Color púrpura oscuro */
+    background-color: #e5e3f2;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+/* Caja de retiros */
+.retiro-box {
+    background: rgb(238,238,238);
+    background: linear-gradient(90deg, rgba(238,238,238,1) 0%, rgba(238,238,238,1) 40%, rgba(238,238,238,1) 100%);
+
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 60px;
+
+}
+
+@media (max-width: 600px) {
+    .retiro-box {
+        padding: 20px;
+        margin-bottom: 40px;
+    }
+}
+
+.retiro-box h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    background-color: #663399;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #552282;
+}
+
+.advertencia {
+    color: red;
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* Footer */
+footer { 
+    width: 100%;
+    margin-left: 0%;
+    background: rgb(255,255,255);
+    background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 100%);
+    color: rgb(22, 5, 5);
+    text-align: right;
+   
+    position: static;
+}
+
+.social-icons img {
+    width: 2px;
+    margin: 0 10px;
+    transition: transform 0.3s;
+
+}
+
+.social-icons svg {
+    width: 50px;
+    height: 50px;
+    fill: black;
+    /* Color del ícono */
+    transition: fill 0.3s ease;
+    Añade una transición suave
+}
+
+.social-icons img:hover {
+    transform: scale(1.2);
+}
+
+
