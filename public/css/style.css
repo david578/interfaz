@@ -1,0 +1,97 @@
+/* Estilos globales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #bdd4ff;
+}
+
+/* Contenedor de login */
+.login-container, .welcome-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 100px;
+}
+
+/* Estilos del formulario de login */
+h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Enlace para registrarse */
+.register-link {
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Información de usuario en la página de bienvenida */
+.user-info p {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.continue-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.continue-btn:hover {
+    background-color: #45a049;
+}
+
+/* Estilos del pie de página */
+footer {
+    margin-top: 20px;
+    color: #666;
+    font-size: 12px;
+}
