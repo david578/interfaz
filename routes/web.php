@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\cajerocontroller;
 use App\Http\Controllers\HomeController;
@@ -34,6 +35,8 @@ Route::get('/cajero',[cajerocontroller::class,'metodo'])->name( 'cajero');
 // añadi
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+
+Route::get('/admin_inicio', [AdminController::class, 'index'])->name('admin.inicio');
 
 
 Route::get('/transacciones',[CuentasController::class, 'transaccion'])->name('hacer.transaccion');
