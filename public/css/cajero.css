@@ -1,6 +1,6 @@
 * {
 
-    
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -24,7 +24,7 @@ body {
 
 }
 .imagen {
-    text-align: center;
+    /* text-align: center; */
 }
 
 .imagen img {

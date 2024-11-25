@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\cajerocontroller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CuentasController;
 use App\Http\Controllers\Auth\LoginController;
@@ -21,10 +22,16 @@ use illuminate\support\Facades\Auth;
 // Route::get('/',[CuentasController::class, 'login']);
 // Route::post('/',[CuentasController::class, 'store'])->name('store.formulario');
 // Route::post('/registro',[CuentasController::class, 'registrar'])->name('registro.formulario');
+
 Route::get('/',[CuentasController::class, 'menu_inicio'])->name('gestionar.cuentas');
 
-
 Auth::routes();
+// añadi
+Route::get('/estado',[cajerocontroller::class,'esta'])->name( 'estado');
+Route::get('/consignacion',[cajerocontroller::class,'consig'])->name( 'consignacion');
+Route::get('/estracto',[cajerocontroller::class,'estracto'])->name( 'estracto');
+Route::get('/cajero',[cajerocontroller::class,'metodo'])->name( 'cajero');
+// añadi
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 
