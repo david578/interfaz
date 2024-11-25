@@ -1,65 +1,84 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('password.update') }}">
-                        @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ asset('/css/homestyles.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet" href="https://github.com/tailwindlabs/tailwindcss-typography.git">
+    <title>BancApp</title>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-title">
+            <h2>BANCAPP</h2>
+        </div>
+    </nav>
+     <!-- Formulario centrado -->
+     <div class="flex justify-center items-center flex-grow">
+        <div class="bg-white p-8 rounded-lg shadow-lg" style="width: 28rem; text-align: center;">
+            <!-- Título -->
+            <h2 class="text-2xl font-semibold text-blue-500 mb-4">Nueva contraseña</h2>
+            <!-- Icono -->
+            <div class="flex justify-center mb-4">
+                <img src="{{ asset('images/check-icon.png') }}" alt="Icono de verificación" style="width: 50px; height: 50px;">
             </div>
+            <!-- Mensaje -->
+            <p class="text-gray-600 mb-6">Por favor ingresa tu nueva contraseña</p>
+            <!-- Formulario -->
+            <form method="POST" action="{{ route('password.update') }}">
+                @csrf
+                <input type="hidden" name="token" value="{{ $token }}">
+                <!-- Nueva contraseña -->
+                <div class="mb-4">
+                    <input 
+                        type="password" 
+                        name="password" 
+                        class="border border-gray-300 p-2 rounded w-full" 
+                        placeholder="Nueva contraseña" 
+                        required>
+                </div>
+                <!-- Confirmar contraseña -->
+                <div class="mb-4">
+                    <input 
+                        type="password" 
+                        name="password_confirmation" 
+                        class="border border-gray-300 p-2 rounded w-full" 
+                        placeholder="Confirmar contraseña" 
+                        required>
+                </div>
+                <!-- Botón -->
+                <button 
+                    type="submit" 
+                    class="bg-blue-500 text-white px-4 py-2 rounded w-full hover:bg-blue-600">
+                    Establecer nueva contraseña
+                </button>
+            </form>
+            <!-- Mensaje de éxito -->
+            @if(session('status'))
+                <div class="bg-green-100 text-green-600 p-2 rounded mt-4">
+                    {{ session('status') }}
+                </div>
+            @endif
         </div>
     </div>
-</div>
-@endsection
+    <footer class="footer bg-blue-400 text-black p-4">
+        <div class="grid grid-cols-2 items-center">
+            <!-- Texto alineado a la izquierda -->
+            <div class="justify-self-start">
+                <p class="foot-text">&copy; 2024 Bancapp. Todos los derechos reservados.</p>
+            </div>
+            <!-- Iconos alineados a la derecha -->
+            <div class="icons flex justify-end space-x-4">
+                <img width="30" height="30" src="https://img.icons8.com/ios/50/instagram-new--v1.png" alt="icono-ig">
+                <img width="30" height="30" src="https://img.icons8.com/ios/50/youtube-play--v1.png" alt="icono-youtube">
+                <img width="30" height="30" src="https://img.icons8.com/ios/50/facebook-new.png" alt="icono-facebook">
+                <img width="30" height="30" src="https://img.icons8.com/ios/50/twitterx--v2.png" alt="icono-x">
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -73,7 +73,7 @@ unset($__errorArgs, $__bag); ?>
                             <a for="remember">recuerdame</a>
                         </div>
                         <div class="text-sm">
-                            <a href="<?php echo e(route('password.request')); ?>" class="font-semibold text-indigo-600 hover:text-indigo-500">¿Olvidaste tu contraseña?</a>
+                            <a href="<?php echo e(route('password.forgot')); ?>" class="font-semibold text-indigo-600 hover:text-indigo-500">¿Olvidaste tu contraseña?</a>
                         </div>
                     </div>
                 </div>

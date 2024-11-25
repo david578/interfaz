@@ -59,7 +59,7 @@
                             <a for="remember">recuerdame</a>
                         </div>
                         <div class="text-sm">
-                            <a href="{{ route('password.request') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">¿Olvidaste tu contraseña?</a>
+                            <a href="{{ route('password.forgot') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">¿Olvidaste tu contraseña?</a>
                         </div>
                     </div>
                 </div>
