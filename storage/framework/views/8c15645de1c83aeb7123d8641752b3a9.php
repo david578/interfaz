@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
+    <title>Admin-Inicio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="<?php echo e(asset('/css/homestyles.css')); ?>">
@@ -148,7 +148,7 @@
         <p>Con qué quieres comenzar hoy</p>
         <div class="options">
             <div class="option">
-                <img src="https://drive.google.com/file/d/1mWr9HBHIXb3vL1tJaejcfN_PwaB5oPph/view?usp=drive_link" alt="Gestión de Usuarios">
+                <img src="" alt="Gestión de Usuarios">
                 <h3>GESTIÓN DE USUARIOS</h3>
             </div>
             <div class="option">

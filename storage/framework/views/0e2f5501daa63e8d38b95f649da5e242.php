@@ -67,15 +67,21 @@ if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
                     </div>
-                    <div class="grid grid-cols-2 mt-2">
-                        <div class="text-sm">
-                            <input type="checkbox" id="remember" name="remember" class="font-semibold text-indigo-600 hover:text-indigo-500"></input>
-                            <a for="remember">recuerdame</a>
+                    <div class="grid justify-items-start grid-cols-2 mt-2">
+                        <!-- Recuerdame -->
+                        <div class="grid grid-cols-2 text-sm text-left content-center">
+                            <input type="checkbox" id="remember" name="remember" class="font-semibold text-indigo-600 hover:text-indigo-500 " style="width: 15px; height: 15px">
+                            <label for="remember" class="text-gray-700 mr-0">Recuérdame</label>
                         </div>
-                        <div class="text-sm">
-                            <a href="<?php echo e(route('password.request')); ?>" class="font-semibold text-indigo-600 hover:text-indigo-500">¿Olvidaste tu contraseña?</a>
+                    
+                        <!-- ¿Olvidaste tu contraseña? -->
+                        <div class="text-sm text-right">
+                            <a href="<?php echo e(route('password.forgot')); ?>" class="font-semibold text-black-500 hover:text-indigo-500">
+                                ¿Olvidaste tu contraseña?
+                            </a>
                         </div>
                     </div>
+                    
                 </div>
             
                 <div>
