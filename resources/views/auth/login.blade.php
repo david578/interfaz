@@ -55,9 +55,9 @@
                     </div>
                     <div class="grid justify-items-start grid-cols-2 mt-2">
                         <!-- Recuerdame -->
-                        <div class="flex items-center text-sm mr-0">
-                            <input type="checkbox" id="remember" name="remember" class="font-semibold text-indigo-600 hover:text-indigo-500">
-                            <label for="remember" class="text-gray-700 mt-1">Recuérdame</label>
+                        <div class="grid grid-cols-2 text-sm text-left content-center">
+                            <input type="checkbox" id="remember" name="remember" class="font-semibold text-indigo-600 hover:text-indigo-500 " style="width: 15px; height: 15px">
+                            <label for="remember" class="text-gray-700 mr-0">Recuérdame</label>
                         </div>
                     
                         <!-- ¿Olvidaste tu contraseña? -->
