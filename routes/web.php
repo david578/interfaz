@@ -21,15 +21,20 @@ use illuminate\support\Facades\Auth;
 // Route::get('/',[CuentasController::class, 'login']);
 // Route::post('/',[CuentasController::class, 'store'])->name('store.formulario');
 // Route::post('/registro',[CuentasController::class, 'registrar'])->name('registro.formulario');
-Route::get('/',[CuentasController::class, 'menu_inicio'])->name('gestionar.cuentas');
+Route::get('/',[CuentasController::class, 'menu_inicio'])->name('ruta.menu');
 
 
 Auth::routes();
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::get('/cuenta',[CuentasController::class, 'gestionar_cuentas'])->name('gestionar.cuentas');
+Route::get('/cuenta-editar',[CuentasController::class, 'actualizar_info'])->name('ruta.editarinfo');
+Route::get('/cuenta-eliminar',[CuentasController::class, 'eliminar_cuenta'])->name('ruta.eliminar.cuenta');
+Route::get('/inicio',[CuentasController::class, 'transaccion'])->name('hacer.transaccion');
+Route::get('/transferencia',[CuentasController::class, 'transferir'])->name('ruta.transfiere');
+Route::get('/retiros',[CuentasController::class, 'retirar'])->name('ruta.retiros');
+Route::get('/extractos',[CuentasController::class, 'extractos'])->name('ruta.extractos');
 
-
-Route::get('/transacciones',[CuentasController::class, 'transaccion'])->name('hacer.transaccion');
 Route::get('/nomina',[CuentasController::class, 'operar_nomina'])->name('pago.nomina');
 
 
