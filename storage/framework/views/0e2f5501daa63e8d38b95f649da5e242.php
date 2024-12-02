@@ -69,10 +69,10 @@ unset($__errorArgs, $__bag); ?>
                     </div>
                     <div class="grid justify-items-start grid-cols-2 mt-2">
                         <!-- Recuerdame -->
-                        <div class="grid grid-cols-2 text-sm text-left content-center">
-                            <input type="checkbox" id="remember" name="remember" class="font-semibold text-indigo-600 hover:text-indigo-500 " style="width: 15px; height: 15px">
-                            <label for="remember" class="text-gray-700 mr-0">Recuérdame</label>
-                        </div>
+                        <div class="flex items-center space-x-2">
+                            <input type="checkbox" id="remember" name="remember" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                            <label for="remember" class="text-sm font-medium text-gray-700">Recuérdame</label>
+                        </div>                        
                     
                         <!-- ¿Olvidaste tu contraseña? -->
                         <div class="text-sm text-right">

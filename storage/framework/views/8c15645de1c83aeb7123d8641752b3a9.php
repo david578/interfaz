@@ -148,15 +148,15 @@
         <p>Con qué quieres comenzar hoy</p>
         <div class="options">
             <div class="option">
-                <img src="" alt="Gestión de Usuarios">
+                <img src="<?php echo e(asset('https://img.freepik.com/foto-gratis/manos-sujetando-tableta-iconos_1134-90.jpg?t=st=1733171099~exp=1733174699~hmac=cbf5a91a33611a45974ee70fe59b2980661fb9649545fda142f5f6a88276c27c&w=740')); ?>" alt="Gestión de Usuarios">
                 <h3>GESTIÓN DE USUARIOS</h3>
             </div>
             <div class="option">
-                <img src="https://via.placeholder.com/80" alt="Dashboard Cliente">
+                <img src="<?php echo e(asset('https://img.freepik.com/vector-gratis/ilustracion-concepto-estadisticas-sitio_114360-1434.jpg?semt=ais_hybrid')); ?>" alt="Dashboard Cliente">
                 <h3>DASHBOARD CLIENTE</h3>
             </div>
             <div class="option">
-                <img src="https://via.placeholder.com/80" alt="Productos Bancarios">
+                <img src="<?php echo e(asset('')); ?>" alt="Productos Bancarios">
                 <h3>PRODUCTOS BANCARIOS</h3>
             </div>
         </div>
