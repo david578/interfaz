@@ -43,9 +43,9 @@ Route::get('password/forgot', [ForgotPasswordController::class, 'showForgotPassw
 Route::post('password/forgot', [ForgotPasswordController::class, 'sendResetCode'])->name('password.email.code');
 
 
+Route::get('/password/enter-code', [ResetPasswordController::class, 'showEnterCodeForm'])->name('password.enter.code');
 Route::post('/password/verify-code', [ResetPasswordController::class, 'verifyCode'])->name('password.verify.code');
 Route::post('/password/resend-code', [ResetPasswordController::class, 'resendCode'])->name('password.resend.code');
-Route::get('/password/enter-code', [ResetPasswordController::class, 'showEnterCodeForm'])->name('password.enter.code');
 
 // Mostrar el formulario para cambiar la contraseña (después de verificar el código)
 Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');

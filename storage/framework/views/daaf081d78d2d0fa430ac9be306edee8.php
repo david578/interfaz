@@ -17,7 +17,7 @@
             <h2>BANCAPP</h2>
         </div>
     </nav>
-    <div class="sm:mx-auto sm:w-full sm:max-w-lg pt-0 pb-20 mt-3 mb-10 rounded bg-gradient-to-b from-blue-500">
+    <div class="sm:mx-auto sm:w-full sm:max-w-lg pt-0 pb-20 mt-0 mb-12 rounded bg-gradient-to-b from-blue-500">
         <div class="sm:mx-auto sm:w-full sm:max-w-lg text-center">
             <div class="sm:mx-auto sm:w-full mt-4 py-4 sm:max-w-60 rounded bg-white">
                 <p>¡Crea tu cuenta en Bancapp!</p>
@@ -97,11 +97,11 @@ unset($__errorArgs, $__bag); ?>
                     </button>
                 </div>
             </form>
-            <p class="mt-5 text-center text-sm/6 text-gray-500">
+            <p class="mt-3 text-center text-sm/6 text-gray-500">
                 ¿Ya tienes una cuenta?
                 <a href="<?php echo e(route('login')); ?>" class="font-semibold text-indigo-600 hover:text-indigo-500">Inicia sesión</a>
             </p>
-            <div class="mt-5 text-center text-sm/6 text-gray-500">
+            <div class="mt-1 text-center text-sm/6 text-gray-500">
                 o regístrate con
                 <a href="<?php echo e(route('register')); ?>" class="flex justify-center font-semibold text-indigo-600 hover:text-indigo-500 "><img width="48" height="48" src="https://img.icons8.com/color/48/google-logo.png" alt="google-logo"/></a>
             </div>
