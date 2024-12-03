@@ -1,23 +1,22 @@
 *{
     margin: 0;
-    background-color: #7EC3F4;
+    
 }
 header{
     height: 10vh;
     background-color: white;
-    border-width:1px;
-    border-style: solid;
+   
 }
 header h2{
     padding:10px;
 }
 body{
-    /*background-color: #9fd3fb;*/
+    background-color: #7EC3F4;
 }
 .home{
     width: 650px;
     height: 80vh;
-    background: linear-gradient(#7EC3F4 50%,#FFFFFF 100%);
+    background-color: #7EC3F4;
     margin-top: 50px;
     margin-left:  300px;
     padding: 10px;

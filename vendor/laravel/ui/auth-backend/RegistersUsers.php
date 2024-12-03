@@ -21,6 +21,26 @@ trait RegistersUsers
         return view('auth.register');
     }
 
+    public function store(Request $request)
+    {
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'correo' => 'required|email|unique:users,email',
+            'contraseña' => 'required|string|min:6',
+            'producto' => 'required|string|max:255',
+        ]);
+
+        User::create([
+            'name' => $validated['nombre'],
+            'email' => $validated['correo'],
+            'password' => bcrypt($validated['contraseña']),
+            'producto' => $validated['producto'],
+        ]);
+
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado correctamente.');
+    }
+
+
     /**
      * Handle a registration request for the application.
      *

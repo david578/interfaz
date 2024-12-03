@@ -8,11 +8,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="<?php echo e(asset('/css/homestyles.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('/css/style.css')); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset('/css/adminstyles.css')); ?>">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="https://github.com/tailwindlabs/tailwindcss-typography.git">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Dm Sans';
             margin: 0;
             padding: 0;
             background-color: #f1f9ff;
@@ -90,6 +91,7 @@
         main p {
             font-size: 18px;
             margin-bottom: 30px;
+            font-weight: bold
         }
 
         .options {
@@ -111,10 +113,12 @@
 
         .option:hover {
             transform: translateY(-10px);
+            cursor: pointer;
+            border-block-color: blue;
         }
 
         .option img {
-            width: 80px;
+            width: max-content;
             margin-bottom: 15px;
         }
 
@@ -148,7 +152,7 @@
         <p>Con qué quieres comenzar hoy</p>
         <div class="options">
             <div class="option">
-                <img src="<?php echo e(asset('https://img.freepik.com/foto-gratis/manos-sujetando-tableta-iconos_1134-90.jpg?t=st=1733171099~exp=1733174699~hmac=cbf5a91a33611a45974ee70fe59b2980661fb9649545fda142f5f6a88276c27c&w=740')); ?>" alt="Gestión de Usuarios">
+                <img src="<?php echo e(asset('https://img.freepik.com/vector-gratis/concepto-gestion-empresarial-remota-empresario-sosteniendo-tableta-que-muestra-analisis-graficos-conectados_1284-44658.jpg?semt=ais_hybrid')); ?>" alt="Gestión de Usuarios">
                 <h3>GESTIÓN DE USUARIOS</h3>
             </div>
             <div class="option">
@@ -156,7 +160,7 @@
                 <h3>DASHBOARD CLIENTE</h3>
             </div>
             <div class="option">
-                <img src="<?php echo e(asset('')); ?>" alt="Productos Bancarios">
+                <img src="<?php echo e(asset('https://img.freepik.com/vector-gratis/concepto-ahorro-dinero_1284-15399.jpg?semt=ais_hybrid')); ?>" alt="Productos Bancarios">
                 <h3>PRODUCTOS BANCARIOS</h3>
             </div>
         </div>
