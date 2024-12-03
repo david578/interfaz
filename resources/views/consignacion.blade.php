@@ -13,7 +13,7 @@
                 <div class="text-dark">
                     <div class="d-flex align-items-baseline">
                         <label class="mr-2 mb-0">Número de Cuenta:</label>
-                        <input type="text" class="mb-0"required>
+                        <input type="number" class="mb-0"required>
                     </div>
                      <div class="d-flex align-items-baseline mt-2">
                         <label class="mr-2 mb-0">Monto a consignar:</label>

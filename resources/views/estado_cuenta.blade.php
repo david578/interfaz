@@ -12,7 +12,7 @@
                 <form>
                     <div class="d-flex align-items-baseline">
                         <label for="cuenta" class="mr-2 mb-0">Número de Cuenta:</label>
-                        <input  class="mb-0" type="text"  required>
+                        <input  class="mb-0" type="number"  required>
                     </div>
 
                     <div class="d-flex justify-content-center align-items-center" style="height: 8vh;">
@@ -56,7 +56,7 @@
 
                     <div class="buttons">
                     <button type="submit" class="btn retirar-btn mr-4">Descargar PDF</button>
-                    <button type="button" class="btn simular-btn ml-4">Descargar CSV</button>
+                    <button type="submit" class="btn simular-btn ml-4">Descargar CSV</button>
 
                     </div>
                 </form>
