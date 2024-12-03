@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('password');
             $table->timestamps();
         });
+        
     }
+
 
     /**
      * Reverse the migrations.
@@ -26,4 +28,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('personas');
     }
+    
 };
