@@ -154,9 +154,11 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
+
     <header>
-        <div class="logo">Admin Panel</div>
+        <img src="{{ asset('/img/3d_avatar_1.png') }}" alt="Admin Avatar" id="profile-pic">
+        <h1>ADMIN</h1>
+
         <div class="actions">
             <!-- Botón de notificaciones -->
             <button title="Notificaciones">
@@ -172,9 +174,17 @@
                     <a href="#">Cerrar Sesión</a>
                 </div>
             </div>
-        </div>
     </header>
 
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Perfil</a></li>
+            <li><a href="#">Configuración</a></li>
+            <li><a href="#">Cerrar Sesión</a></li>
+        </ul>
+    </div>
     <!-- Main Content -->
     <main>
         <div class="table-container">
