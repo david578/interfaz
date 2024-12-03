@@ -25,7 +25,6 @@ use illuminate\support\Facades\Auth;
 // Route::get('/',[CuentasController::class, 'login']);
 // Route::post('/',[CuentasController::class, 'store'])->name('store.formulario');
 // Route::post('/registro',[CuentasController::class, 'registrar'])->name('registro.formulario');
-
 Route::get('/',[CuentasController::class, 'menu_inicio'])->name('gestionar.cuentas');
 
 Auth::routes();
@@ -38,45 +37,26 @@ Route::get('/cajero',[cajerocontroller::class,'metodo'])->name( 'cajero');
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/usuarios', [AdminController::class, 'store'])->name('usuarios.store');
-
-
-
 Route::get('password/forgot', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.forgot');
 Route::post('password/forgot', [ForgotPasswordController::class, 'sendResetCode'])->name('password.email.code');
-
-
 Route::get('/password/enter-code', [ResetPasswordController::class, 'showEnterCodeForm'])->name('password.enter.code');
 Route::post('/password/verify-code', [ResetPasswordController::class, 'verifyCode'])->name('password.verify.code');
 Route::post('/password/resend-code', [ResetPasswordController::class, 'resendCode'])->name('password.resend.code');
-
 // Mostrar el formulario para cambiar la contraseña (después de verificar el código)
 Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])->name('password.reset.form');
-// Actualizar la contraseña
+// Actualizar la contraseñ
 Route::post('/password/update', [ResetPasswordController::class, 'updatePassword'])->name('password.update');
-
-
 Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
-
-
 Route::get('/admin_inicio', [AdminController::class, 'index'])->name('admin.inicio');
-
-
-//rutas gestion de usuarios
+//rutas gestion de usuario
 use App\Http\Controllers\UserController;
-
 Route::get('/usuarios', [AdminController::class, 'index1'])->name('usuarios.index');
 Route::get('/usuarios/crear', [AdminController::class, 'create'])->name('usuarios.create');
 Route::post('/usuarios', [AdminController::class, 'store'])->name('usuarios.store');
 Route::get('/usuarios/{id}/editar', [AdminController::class, 'edit'])->name('usuarios.edit');
 Route::put('/usuarios/{id}', [adminController::class, 'update'])->name('usuarios.update');
 Route::delete('/usuarios/{id}', [AdminController::class, 'destroy'])->name('usuarios.destroy');
-
-
-
-
-
-Route::get('/transacciones',[CuentasController::class, 'transaccion'])->name('hacer.transaccion');
 Route::get('/nomina',[CuentasController::class, 'operar_nomina'])->name('pago.nomina');
 
 

@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h2>BancApp-Empresa</h2>
+        <h2>BancApp</h2>
     </header>
 
     <div class="home">
@@ -16,19 +16,19 @@
         <h3>¿Que quieres hacer?</h3>
     
         <ul class="icono">
-            <li><a href="gestion-cuentas">
+            <li><a href="{{route('gestionar.cuentas')}}">
                     <img src="people-fill.svg">
                     
                 </a>
                 <br><h4>Gestionar mis cuentas</h4>
             </li>
-            <li><a href="#">
+            <li><a href="{{route('hacer.transaccion')}}">
                     <img src="cash-stack.svg">
                     
                 </a>
                 <br><h4>Realizar transacciones</h4>
             </li>
-            <li><a href="#">
+            <li><a href="{{route('ruta.extractos')}}">
                     <img src="file-earmark.svg">
                     
                 </a>

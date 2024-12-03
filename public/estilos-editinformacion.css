@@ -1,0 +1,18 @@
+.formulario{
+    margin: auto;
+    background-color: white;
+    height: 65vh;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.formulario .div-botones{
+    padding-left:400px;
+    
+}
+
+.div-flex2{
+    display: flex;
+    list-style: none;
+    gap: 90px;
+}
