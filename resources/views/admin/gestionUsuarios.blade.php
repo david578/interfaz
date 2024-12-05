@@ -187,34 +187,33 @@
     </div>
     <!-- Main Content -->
     <main>
-        <div class="table-container">
-            <div class="table-header">
-                <h1>GESTIÓN DE USUARIOS</h1>
-                <a href="{{ route('usuarios.create') }}" class="btn btn-blue">+ Añadir Usuario</a>
-            </div>
-            <table>
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold text-center my-6">GESTIÓN DE USUARIOS</h1>
+            <a href="{{ route('usuarios.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Añadir Usuario</a>
+        
+            <table class="table-auto w-full mt-4 border-collapse border border-gray-300">
                 <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th>CORREO</th>
-                        <th>PRODUCTO</th>
-                        <th>ACCIONES</th>
+                    <tr class="bg-gray-100">
+                        <th class="border border-gray-300 px-4 py-2">ID</th>
+                        <th class="border border-gray-300 px-4 py-2">Nombre</th>
+                        <th class="border border-gray-300 px-4 py-2">Correo</th>
+                        <th class="border border-gray-300 px-4 py-2">Producto</th>
+                        <th class="border border-gray-300 px-4 py-2">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($usuarios as $usuario)
                     <tr>
-                        <td>{{ $usuario->id }}</td>
-                        <td>{{ $usuario->name }}</td>
-                        <td>{{ $usuario->email }}</td>
-                        <td>{{ $usuario->producto }}</td>
-                        <td>
-                            <a href="{{ route('usuarios.edit', $usuario->id) }}" class="btn btn-edit">Editar</a>
+                        <td class="border border-gray-300 px-4 py-2">{{ $usuario->id }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $usuario->name }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $usuario->email }}</td>
+                        <td class="border border-gray-300 px-4 py-2">{{ $usuario->producto }}</td>
+                        <td class="border border-gray-300 px-4 py-2">
+                            <a href="{{ route('usuarios.edit', $usuario->id) }}" class="text-blue-500">Editar</a>
                             <form action="{{ route('usuarios.destroy', $usuario->id) }}" method="POST" style="display:inline-block;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-delete" onclick="return confirm('¿Estás seguro de eliminar este usuario?')">Eliminar</button>
+                                <button type="submit" class="text-red-500" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
                             </form>
                         </td>
                     </tr>
