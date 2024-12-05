@@ -13,7 +13,7 @@
             <a class="btn btn-primary" href="{{route('pago.nomina')}}">Nomina</a>
         </li>
         <li>
-            <a class="btn btn-primary" href="{{route('ruta.transfiere')}}" >Transferir</a>
+            <a class="btn btn-primary" href="{{route('ruta.transferir')}}" >Transferir</a>
         </li>
         <li>
             <a class="btn btn-primary" href="{{route('ruta.retiros')}}" >Retirar</a>
