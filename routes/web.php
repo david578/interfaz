@@ -26,7 +26,7 @@ use illuminate\support\Facades\Auth;
 // Route::get('/',[CuentasController::class, 'login']);
 // Route::post('/',[CuentasController::class, 'store'])->name('store.formulario');
 // Route::post('/registro',[CuentasController::class, 'registrar'])->name('registro.formulario');
-Route::get('/',[CuentasController::class, 'menu_inicio'])->name('gestionar.cuentas');
+// Route::get('/',[CuentasController::class, 'menu_inicio'])->name('ruta.inicio');
 
 Auth::routes();
 // añadi
@@ -35,7 +35,7 @@ Route::get('/consignacion',[cajerocontroller::class,'consig'])->name( 'consignac
 Route::get('/estracto',[cajerocontroller::class,'estracto'])->name( 'estracto');
 Route::get('/cajero',[cajerocontroller::class,'metodo'])->name( 'cajero');
 // añadi
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/usuarios', [AdminController::class, 'store'])->name('usuarios.store');
 Route::get('password/forgot', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.forgot');
@@ -66,6 +66,14 @@ Route::get('/transaccion',[CuentasController::class, 'transaccion'])->name('hace
 Route::get('/extractos',[CuentasController::class, 'extractos'])->name('ruta.extractos');
 Route::get('/nomina',[CuentasController::class, 'operar_nomina'])->name('pago.nomina');
 
+
+Route::get('/cuenta',[CuentasController::class, 'gestionar_cuentas'])->name('gestionar.cuentas');
+Route::get('/actualizar-cuenta',[CuentasController::class, 'actualizar_info'])->name('ruta.editarinfo');
+Route::get('/eliminar-cuenta',[CuentasController::class, 'eliminar_cuenta'])->name('ruta.eliminar.cuenta');
+Route::get('/inicio',[CuentasController::class, 'transaccion'])->name('hacer.transaccion');
+Route::get('/transferir',[CuentasController::class, 'transferir'])->name('ruta.transferir');
+Route::get('/retirar',[CuentasController::class, 'retirar'])->name('ruta.retiros');
+Route::get('/extractos',[CuentasController::class, 'extractos'])->name('ruta.extractos');
 
 
 
