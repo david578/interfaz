@@ -35,10 +35,10 @@ Route::get('/consignacion',[cajerocontroller::class,'consig'])->name( 'consignac
 Route::get('/estracto',[cajerocontroller::class,'estracto'])->name( 'estracto');
 Route::get('/cajero',[cajerocontroller::class,'metodo'])->name( 'cajero');
 // añadi
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/usuarios', [AdminController::class, 'store'])->name('usuarios.store');
-Route::get('password/forgot', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.forgot');
+Route::get('password/forgot', action: [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.forgot');
 Route::post('password/forgot', [ForgotPasswordController::class, 'sendResetCode'])->name('password.email.code');
 Route::get('/password/enter-code', [ResetPasswordController::class, 'showEnterCodeForm'])->name('password.enter.code');
 Route::post('/password/verify-code', [ResetPasswordController::class, 'verifyCode'])->name('password.verify.code');
@@ -52,15 +52,8 @@ Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('
 Route::get('/admin_inicio', [AdminController::class, 'index'])->name('admin.inicio');
 //rutas gestion de usuario
 
-Route::get('/usuarios', [UserController::class, 'index1'])->name('usuarios.index'); // Listar usuarios
-Route::get('/usuarios/crear', [UserController::class, 'create'])->name('usuarios.create'); // Formulario de creación
-Route::post('/usuarios', [UserController::class, 'store'])->name('usuarios.store'); // Guardar nuevo usuario
-Route::get('/usuarios/{id}/editar', [UserController::class, 'edit'])->name('usuarios.edit'); // Formulario de edición
-Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('usuarios.update'); // Actualizar usuario
-Route::delete('/usuarios/{id}', [UserController::class, 'destroy'])->name('usuarios.destroy'); // Eliminar usuario
-
-
-
+Route::resource('usuarios', UserController::class)->names('usuarios'); // Formulario de creación
+// Eliminar usuario
 
 Route::get('/transaccion',[CuentasController::class, 'transaccion'])->name('hacer.transaccion');
 Route::get('/extractos',[CuentasController::class, 'extractos'])->name('ruta.extractos');
