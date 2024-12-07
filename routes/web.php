@@ -8,6 +8,7 @@ use App\Http\Controllers\CuentasController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use illuminate\support\Facades\Auth;
 
@@ -34,10 +35,10 @@ Route::get('/consignacion',[cajerocontroller::class,'consig'])->name( 'consignac
 Route::get('/estracto',[cajerocontroller::class,'estracto'])->name( 'estracto');
 Route::get('/cajero',[cajerocontroller::class,'metodo'])->name( 'cajero');
 // añadi
-Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/usuarios', [AdminController::class, 'store'])->name('usuarios.store');
-Route::get('password/forgot', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.forgot');
+Route::get('password/forgot', action: [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.forgot');
 Route::post('password/forgot', [ForgotPasswordController::class, 'sendResetCode'])->name('password.email.code');
 Route::get('/password/enter-code', [ResetPasswordController::class, 'showEnterCodeForm'])->name('password.enter.code');
 Route::post('/password/verify-code', [ResetPasswordController::class, 'verifyCode'])->name('password.verify.code');
@@ -50,13 +51,12 @@ Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showRese
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
 Route::get('/admin_inicio', [AdminController::class, 'index'])->name('admin.inicio');
 //rutas gestion de usuario
-use App\Http\Controllers\UserController;
-Route::get('/usuarios', [AdminController::class, 'index1'])->name('usuarios.index');
-Route::get('/usuarios/crear', [AdminController::class, 'create'])->name('usuarios.create');
-Route::post('/usuarios', [AdminController::class, 'store'])->name('usuarios.store');
-Route::get('/usuarios/{id}/editar', [AdminController::class, 'edit'])->name('usuarios.edit');
-Route::put('/usuarios/{id}', [adminController::class, 'update'])->name('usuarios.update');
-Route::delete('/usuarios/{id}', [AdminController::class, 'destroy'])->name('usuarios.destroy');
+
+Route::resource('usuarios', UserController::class)->names('usuarios'); // Formulario de creación
+// Eliminar usuario
+
+Route::get('/transaccion',[CuentasController::class, 'transaccion'])->name('hacer.transaccion');
+Route::get('/extractos',[CuentasController::class, 'extractos'])->name('ruta.extractos');
 Route::get('/nomina',[CuentasController::class, 'operar_nomina'])->name('pago.nomina');
 
 
