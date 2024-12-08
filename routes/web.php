@@ -11,6 +11,8 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use illuminate\support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -26,16 +28,22 @@ use illuminate\support\Facades\Auth;
 // Route::get('/',[CuentasController::class, 'login']);
 // Route::post('/',[CuentasController::class, 'store'])->name('store.formulario');
 // Route::post('/registro',[CuentasController::class, 'registrar'])->name('registro.formulario');
-// Route::get('/',[CuentasController::class, 'menu_inicio'])->name('ruta.inicio');
+// Route::get('/',[CuentasController::class, 'menu_inicio'])->name('ruta.inicio');{
+
 
 Auth::routes();
+
+Route::get('/home', function () {
+    return 'Bienvenido al sistema';
+});
 // añadi
 Route::get('/estado',[cajerocontroller::class,'esta'])->name( 'estado');
 Route::get('/consignacion',[cajerocontroller::class,'consig'])->name( 'consignacion');
 Route::get('/estracto',[cajerocontroller::class,'estracto'])->name( 'estracto');
 Route::get('/cajero',[cajerocontroller::class,'metodo'])->name( 'cajero');
 // añadi
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/', [LoginController::class, 'login'])->name('login');;
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/usuarios', [AdminController::class, 'store'])->name('usuarios.store');
 Route::get('password/forgot', action: [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.forgot');
@@ -70,3 +78,8 @@ Route::get('/extractos',[CuentasController::class, 'extractos'])->name('ruta.ext
 
 
 
+use App\Http\Controllers\EmpresaController;
+
+Route::middleware(['auth', 'role:Admin'])->get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.inicio');
+Route::middleware(['auth', 'role:Cajero'])->get('/cajero/dashboard', [CajeroController::class, 'esta'])->name('estado');
+Route::middleware(['auth', 'role:Empresa'])->get('/empresa/dashboard', [EmpresaController::class, 'gestionar_cuentas'])->name('gestionar.cuentas');
