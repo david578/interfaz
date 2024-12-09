@@ -13,7 +13,8 @@ use App\Http\Controllers\Auth\ResetPasswordController;
 use illuminate\support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\ProductoController;
+use Database\Seeders\RoleSeeder;
 
 
 /*
@@ -62,8 +63,25 @@ Route::get('/admin_inicio', [AdminController::class, 'index'])->name('admin.inic
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 //rutas gestion de usuario
+Route::middleware(['auth', 'role:Admin'])->group(function () {
+    Route::resource('usuarios', UserController::class)->names([
+        'index' => 'usuarios.listado',
+        'create' => 'usuarios.nuevo',
+        'store' => 'usuarios.guardar',
+        'show' => 'usuarios.detalle',
+        'edit' => 'usuarios.editar',
+        'update' => 'usuarios.actualizar',
+        'destroy' => 'usuarios.eliminar',
+    ]);
+});
 
-Route::resource('usuarios', UserController::class)->names('usuarios'); // Formulario de creación
+
+Route::get('/productos-bancarios', [ProductoController::class, 'productosBancarios'])->name('productos.index');
+Route::post('/productos-bancarios/agregar', [ProductoController::class, 'store'])->name('productos.agregar');
+Route::post('/productos-bancarios/guardar', [ProductoController::class, 'store'])->name('productos.guardar');
+Route::delete('/productos-bancarios/eliminar/{id}', [ProductoController::class, 'eliminarProducto'])->name('productos.eliminar');
+
+
 // Eliminar usuario
 
 Route::get('/transaccion',[CuentasController::class, 'transaccion'])->name('hacer.transaccion');

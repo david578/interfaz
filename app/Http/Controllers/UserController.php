@@ -9,11 +9,10 @@ class UserController extends Controller
 {
 
 
-    public function __construct(){
+/*    public function __construct(){
         $this->middleware('can:admin.gestionUsuarios')->only('index');
         $this->middleware('can:admin.editarUsuario')->only('edit', 'update');
-
-    }
+    }*/
     // Mostrar todos los usuarios
     public function index()
     {
