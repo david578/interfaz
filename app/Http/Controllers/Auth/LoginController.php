@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\RedirectsUsers;
+
+
+use Spatie\Permission\Traits\HasRoles;
 
 class LoginController extends Controller
 {
@@ -20,7 +24,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers, RedirectsUsers;
 
     /**
      * Where to redirect users after login.
@@ -43,33 +47,35 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-
-    protected function redirectTo()
-    {
-        $role = Auth::user()->roles->pluck('name')->first(); // Obtén el rol del usuario
-        switch ($role) {
-            case 'Admin':
-                return '/admin/dashboard';
-            case 'Cajero':
-                return '/cajero/dashboard';
-            case 'Empresa':
-                return '/empresa/dashboard';
-            default:
-                return '/home'; // Ruta por defecto
-        }
-    }
-
     protected function authenticated(Request $request, $user)
     {
+        // Redirigir según el rol del usuario
         if ($user->hasRole('Admin')) {
-            return redirect()->route('admin.inicio');
-        } elseif ($user->hasRole('Cajero')) {
-            return redirect()->route('estado');
-        } elseif ($user->hasRole('Empresa')) {
-            return redirect()->route('transaccion');
-        } else {
-            return redirect('/'); // Redirigir a una página predeterminada si no tiene un rol específico
+            return redirect()->route('admin.inicio'); // Asegúrate de que esta ruta exista
         }
+
+        if ($user->hasRole('Cajero')) {
+            return redirect()->route('hacer.transaccion'); // Asegúrate de que esta ruta exista
+        }
+
+        if ($user->hasRole('Empresa')) {
+            return redirect()->route('gestionar.cuentas'); // Asegúrate de que esta ruta exista
+        }
+
+        // En caso de que no tenga ningún rol, redirigir al home genérico
+        return redirect('/');
     }
+
+    protected $redirectTo;
+    public function redirectTo()
+    {
+        $user = Auth::user()->is_admin;
+
+        $this->redirectTo = $user ? route('admin.inicio') : route('login');
+
+        return $this->redirectTo;
+
+    }
+
 
 }

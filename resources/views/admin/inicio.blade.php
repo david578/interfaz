@@ -142,7 +142,14 @@
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Perfil</a></li>
             <li><a href="#">Configuración</a></li>
-            <li><a href="#">Cerrar Sesión</a></li>
+            <li>
+                @auth
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="text-red-600 hover:underline">Cerrar Sesión</button>
+                </form>
+                @endauth
+            </li>
         </ul>
     </div>
 

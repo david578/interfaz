@@ -18,6 +18,7 @@
     <header>
         <h2>BancApp</h2>
         <nav class="nav-iconos">
+
             <h6>Cuenta</h6>
             <img src="usuario.png" style="width: 30px">
             <img src="notificacion1.png" style="width:30px">
@@ -69,6 +70,14 @@
                             <h6>Consultar y descargar extractos</h6>
                         </a>
                     </li>    
+                </ul>
+                <ul>
+                    @auth
+                        <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+                        </form>
+                    @endauth
                 </ul>
             </ul>
         </div>
