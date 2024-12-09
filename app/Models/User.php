@@ -43,4 +43,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getIsAdminAttribute(){
+
+        return $this->roles()->where('id', 1)->exists();
+
+    }
+
+    public function getIsCajeroAttribute(){
+
+        return $this->roles()->where('id', 2)->exists();
+
+    }
+
+    public function getIsEmpresaAttribute(){
+
+        return $this->roles()->where('id', 3)->exists();
+
+    }
 }

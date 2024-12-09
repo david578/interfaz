@@ -15,6 +15,8 @@
         <div class="nav-title">
             <h2>BANCAPP</h2>
         </div>
+      <!-- Botón para Cerrar Sesión -->
+
     </nav>
 
     <!-- Main Content -->

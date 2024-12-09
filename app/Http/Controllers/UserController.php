@@ -7,17 +7,24 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+
+
+    public function __construct(){
+        $this->middleware('can:admin.gestionUsuarios')->only('index');
+        $this->middleware('can:admin.editarUsuario')->only('edit', 'update');
+
+    }
     // Mostrar todos los usuarios
-    public function index1()
+    public function index()
     {
         $usuarios = User::all(); // Obtiene todos los usuarios
-        return view('usuarios.index', compact('usuarios'));
+        return view('admin.gestionUsuarios', compact('usuarios'));
     }
 
     // Mostrar formulario para crear un usuario
     public function create()
     {
-        return view('usuarios.create');
+        return view('auth.register');
     }
 
     // Guardar un nuevo usuario
@@ -27,14 +34,12 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:6',
-            'producto' => 'required|string',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'producto' => $request->producto,
         ]);
 
         return redirect()->route('usuarios.index')->with('success', 'Usuario creado con éxito.');
@@ -44,7 +49,7 @@ class UserController extends Controller
     public function edit($id)
     {
         $usuario = User::findOrFail($id);
-        return view('usuarios.edit', compact('usuario'));
+        return view('admin.editarUsuario', compact('usuario'));
     }
 
     // Actualizar un usuario existente
@@ -55,13 +60,11 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $usuario->id,
-            'producto' => 'required|string',
         ]);
 
         $usuario->update([
             'name' => $request->name,
             'email' => $request->email,
-            'producto' => $request->producto,
         ]);
 
         return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado con éxito.');

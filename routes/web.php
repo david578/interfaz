@@ -12,6 +12,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use illuminate\support\Facades\Auth;
 use Spatie\Permission\Models\Role;
+use App\Http\Controllers\DashboardController;
+
 
 
 /*
@@ -33,9 +35,6 @@ use Spatie\Permission\Models\Role;
 
 Auth::routes();
 
-Route::get('/home', function () {
-    return 'Bienvenido al sistema';
-});
 // añadi
 Route::get('/estado',[cajerocontroller::class,'esta'])->name( 'estado');
 Route::get('/consignacion',[cajerocontroller::class,'consig'])->name( 'consignacion');
@@ -57,7 +56,11 @@ Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])
 Route::post('/password/update', [ResetPasswordController::class, 'updatePassword'])->name('password.update');
 Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+
 Route::get('/admin_inicio', [AdminController::class, 'index'])->name('admin.inicio');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 //rutas gestion de usuario
 
 Route::resource('usuarios', UserController::class)->names('usuarios'); // Formulario de creación
@@ -78,8 +81,10 @@ Route::get('/extractos',[CuentasController::class, 'extractos'])->name('ruta.ext
 
 
 
-use App\Http\Controllers\EmpresaController;
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
 
-Route::middleware(['auth', 'role:Admin'])->get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.inicio');
-Route::middleware(['auth', 'role:Cajero'])->get('/cajero/dashboard', [CajeroController::class, 'esta'])->name('estado');
-Route::middleware(['auth', 'role:Empresa'])->get('/empresa/dashboard', [EmpresaController::class, 'gestionar_cuentas'])->name('gestionar.cuentas');
+    return redirect('/login');
+})->name('logout');
