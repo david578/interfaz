@@ -20,12 +20,13 @@ class RoleSeeder extends Seeder
        $role3 = Role::create(['name'=>'Empresa']);
 
        Permission::create(['name'=>'admin.inicio'])->assignRole($role1);
-
-       Permission::create(['name'=>'usuarios.index1'])->assignRole($role1);
-       Permission::create(['name'=>'usuarios.create'])->assignRole($role1);
-       Permission::create(['name'=>'usuarios.edit'])->assignRole($role1);
-       Permission::create(['name'=>'usuarios.destroy'])->assignRole($role1);
-
+       Permission::create(['name'=>'usuarios.listado'])->assignRole($role1);
+       Permission::create(['name'=>'usuarios.nuevo'])->assignRole($role1);
+       Permission::create(['name'=>'usuarios.guardar'])->assignRole($role1);
+       Permission::create(['name'=>'usuarios.detalle'])->assignRole($role1);
+       Permission::create(['name'=>'usuarios.editar'])->assignRole($role1);
+       Permission::create(['name'=>'usuarios.actualizar'])->assignRole($role1);
+       Permission::create(['name'=>'usuarios.eliminar'])->assignRole($role1);
 
     }
 }
