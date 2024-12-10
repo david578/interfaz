@@ -118,9 +118,9 @@
                 <div id="error" class="icono-exito">
                     ❗
                 </div>
-                <h3 id="exitoso">¡Retiro Exitoso!</h3>
-                <h3 id="fallido">¡Retiro fallido!</h3>
-                <p id="mensajeExito">Tu retiro se realizó correctamente.</p>
+                <h3 id="exitoso">¡consignacion Exitosa!</h3>
+                <h3 id="fallido">¡consignacion fallida!</h3>
+                <p id="mensajeExito">Tu consignacion se realizó correctamente.</p>
                 <p id="mensajeAdvertencia" class="mensaje-advertencia" style="display: none;">Se requiere autorización adicional.</p>
                 <button class="cerrar-btn" onclick="cerrarModal()">Cerrar</button>
             </div>
