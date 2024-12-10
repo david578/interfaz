@@ -8,8 +8,14 @@ use App\Http\Controllers\CuentasController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use illuminate\support\Facades\Auth;
+use Spatie\Permission\Models\Role;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductoController;
+use Database\Seeders\RoleSeeder;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,19 +31,22 @@ use illuminate\support\Facades\Auth;
 // Route::get('/',[CuentasController::class, 'login']);
 // Route::post('/',[CuentasController::class, 'store'])->name('store.formulario');
 // Route::post('/registro',[CuentasController::class, 'registrar'])->name('registro.formulario');
-Route::get('/',[CuentasController::class, 'menu_inicio'])->name('gestionar.cuentas');
+// Route::get('/',[CuentasController::class, 'menu_inicio'])->name('ruta.inicio');{
+
 
 Auth::routes();
+
 // añadi
 Route::get('/estado',[cajerocontroller::class,'esta'])->name( 'estado');
 Route::get('/consignacion',[cajerocontroller::class,'consig'])->name( 'consignacion');
 Route::get('/estracto',[cajerocontroller::class,'estracto'])->name( 'estracto');
 Route::get('/cajero',[cajerocontroller::class,'metodo'])->name( 'cajero');
 // añadi
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/', [LoginController::class, 'login'])->name('login');;
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/usuarios', [AdminController::class, 'store'])->name('usuarios.store');
-Route::get('password/forgot', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.forgot');
+Route::get('password/forgot', action: [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.forgot');
 Route::post('password/forgot', [ForgotPasswordController::class, 'sendResetCode'])->name('password.email.code');
 Route::get('/password/enter-code', [ResetPasswordController::class, 'showEnterCodeForm'])->name('password.enter.code');
 Route::post('/password/verify-code', [ResetPasswordController::class, 'verifyCode'])->name('password.verify.code');
@@ -48,17 +57,52 @@ Route::get('/password/reset', [ResetPasswordController::class, 'showResetForm'])
 Route::post('/password/update', [ResetPasswordController::class, 'updatePassword'])->name('password.update');
 Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+
 Route::get('/admin_inicio', [AdminController::class, 'index'])->name('admin.inicio');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 //rutas gestion de usuario
-use App\Http\Controllers\UserController;
-Route::get('/usuarios', [AdminController::class, 'index1'])->name('usuarios.index');
-Route::get('/usuarios/crear', [AdminController::class, 'create'])->name('usuarios.create');
-Route::post('/usuarios', [AdminController::class, 'store'])->name('usuarios.store');
-Route::get('/usuarios/{id}/editar', [AdminController::class, 'edit'])->name('usuarios.edit');
-Route::put('/usuarios/{id}', [adminController::class, 'update'])->name('usuarios.update');
-Route::delete('/usuarios/{id}', [AdminController::class, 'destroy'])->name('usuarios.destroy');
+Route::middleware(['auth', 'role:Admin'])->group(function () {
+    Route::resource('usuarios', UserController::class)->names([
+        'index' => 'usuarios.listado',
+        'create' => 'usuarios.nuevo',
+        'store' => 'usuarios.guardar',
+        'show' => 'usuarios.detalle',
+        'edit' => 'usuarios.editar',
+        'update' => 'usuarios.actualizar',
+        'destroy' => 'usuarios.eliminar',
+    ]);
+});
+
+
+Route::get('/productos-bancarios', [ProductoController::class, 'productosBancarios'])->name('productos.index');
+Route::post('/productos-bancarios/agregar', [ProductoController::class, 'store'])->name('productos.agregar');
+Route::post('/productos-bancarios/guardar', [ProductoController::class, 'store'])->name('productos.guardar');
+Route::delete('/productos-bancarios/eliminar/{id}', [ProductoController::class, 'eliminarProducto'])->name('productos.eliminar');
+
+
+// Eliminar usuario
+
+Route::get('/transaccion',[CuentasController::class, 'transaccion'])->name('hacer.transaccion');
+Route::get('/extractos',[CuentasController::class, 'extractos'])->name('ruta.extractos');
 Route::get('/nomina',[CuentasController::class, 'operar_nomina'])->name('pago.nomina');
 
 
+Route::get('/cuenta',[CuentasController::class, 'gestionar_cuentas'])->name('gestionar.cuentas');
+Route::get('/actualizar-cuenta',[CuentasController::class, 'actualizar_info'])->name('ruta.editarinfo');
+Route::get('/eliminar-cuenta',[CuentasController::class, 'eliminar_cuenta'])->name('ruta.eliminar.cuenta');
+Route::get('/inicio',[CuentasController::class, 'transaccion'])->name('hacer.transaccion');
+Route::get('/transferir',[CuentasController::class, 'transferir'])->name('ruta.transferir');
+Route::get('/retirar',[CuentasController::class, 'retirar'])->name('ruta.retiros');
+Route::get('/extractos',[CuentasController::class, 'extractos'])->name('ruta.extractos');
 
 
+
+Route::post('/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+
+    return redirect('/login');
+})->name('logout');

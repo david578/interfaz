@@ -6,11 +6,15 @@
     <title>Admin-Inicio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="<?php echo e(asset('/css/homestyles.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('/css/style.css')); ?>">
-    <link rel="stylesheet" href="<?php echo e(asset('/css/adminstyles.css')); ?>">
+    <link rel="stylesheet" href="{{ asset('/css/homestyles.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/adminstyles.css') }}">
+    <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <link rel="stylesheet" href="https://github.com/tailwindlabs/tailwindcss-typography.git">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>@yield('title', 'BancApp')</title>
     <style>
         body {
             font-family: 'Dm Sans';
@@ -127,46 +131,51 @@
             color: #000;
             margin-bottom: 10px;
         }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        .card img {
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
     </style>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
 <body>
     <!-- Header -->
     <header>
-        <img src="<?php echo e(asset('/img/3d_avatar_1.png')); ?>" alt="Admin Avatar" id="profile-pic">
-        <h1>ADMIN</h1>
+        <img src="{{ asset('/img/3d_avatar_1.png') }}" alt="Admin Avatar" id="profile-pic">
+        <h1>{{ Auth::user()->name }} - Admin</h1>
     </header>
 
     <!-- Sidebar -->
     <div class="sidebar" id="sidebar">
         <ul>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Perfil</a></li>
-            <li><a href="#">Configuración</a></li>
-            <li><a href="#">Cerrar Sesión</a></li>
+            <li><a href="{{ route('admin.inicio') }}">Inicio</a></li>
+            <li><a href="{{ route('usuarios.listado') }}">Gestion Usuarios</a></li>
+            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+            <li><a href="{{ route('productos.index') }}">Productos Bancarios</a></li>
+            <li>
+                @auth
+                <form action="{{ route('logout') }}" method="POST" class="inline">
+                    @csrf
+                    <button type="submit" class="text-red-600 hover:underline">Cerrar Sesión</button>
+                </form>
+                @endauth
+            </li>
         </ul>
     </div>
 
-    <!-- Main Content -->
-    <main>
-        <h2>BIENVENIDO ADMIN</h2>
-        <p>Con qué quieres comenzar hoy</p>
-        <div class="options">
-            <div class="option">
-                <img src="<?php echo e(asset('https://img.freepik.com/vector-gratis/concepto-gestion-empresarial-remota-empresario-sosteniendo-tableta-que-muestra-analisis-graficos-conectados_1284-44658.jpg?semt=ais_hybrid')); ?>" alt="Gestión de Usuarios">
-                <h3>GESTIÓN DE USUARIOS</h3>
-            </div>
-            <div class="option">
-                <img src="<?php echo e(asset('https://img.freepik.com/vector-gratis/ilustracion-concepto-estadisticas-sitio_114360-1434.jpg?semt=ais_hybrid')); ?>" alt="Dashboard Cliente">
-                <h3>DASHBOARD CLIENTE</h3>
-            </div>
-            <div class="option">
-                <img src="<?php echo e(asset('https://img.freepik.com/vector-gratis/concepto-ahorro-dinero_1284-15399.jpg?semt=ais_hybrid')); ?>" alt="Productos Bancarios">
-                <h3>PRODUCTOS BANCARIOS</h3>
-            </div>
-        </div>
-    </main>
+    @yield('content')
 
-    <!-- Footer -->
     <footer class="footer bg-blue-400 text-black p-4">
         <div class="grid grid-cols-2 items-center">
             <!-- Texto alineado a la izquierda -->
@@ -199,6 +208,63 @@
             }
         });
     </script>
+        <!-- Scripts -->
+        <script>
+            // AJAX para agregar un nuevo producto
+            $('#agregarProductoForm').submit(function(e) {
+                e.preventDefault();
+                let nombre = $('#nombre').val();
+                $.ajax({
+                    url: "{{ route('productos.agregar') }}",
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        nombre: nombre
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            let nuevoProducto = `
+                                <div class="col-md-3 mb-3" id="producto-${response.producto.id}">
+                                    <div class="card">
+                                        <img src="https://via.placeholder.com/150" class="card-img-top" alt="${response.producto.nombre}">
+                                        <div class="card-body">
+                                            <p class="card-text">${response.producto.nombre}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                            $('#productos-list').append(nuevoProducto);
+                            $('#modalAgregar').modal('hide');
+                        }
+                    },
+                    error: function() {
+                        alert("Hubo un error al agregar el producto.");
+                    }
+                });
+            });
+    
+            // AJAX para eliminar un producto
+            $('#eliminarProductoBtn').click(function() {
+                let productoId = $('#productoEliminar').val();
+                $.ajax({
+                    url: `{{ url('productos') }}/${productoId}`,
+                    type: 'DELETE',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            $(`#producto-${productoId}`).remove();
+                            $('#modalEliminar').modal('hide');
+                        }
+                    },
+                    error: function() {
+                        alert("Hubo un error al eliminar el producto.");
+                    }
+                });
+            });
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
-<?php /**PATH C:\xampp\htdocs\Bancapp\resources\views/admin/inicio.blade.php ENDPATH**/ ?>

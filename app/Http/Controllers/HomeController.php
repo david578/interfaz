@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-
- 
-
-    
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }    
 }
